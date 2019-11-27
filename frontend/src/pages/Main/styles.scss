@@ -1,0 +1,39 @@
+/********* Variaveis Globais ************/
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+
+@mixin flexbox($align, $justify: $align){
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+$wrap: wrap;
+$column: column;
+
+/************************************/
+
+.container {
+    @include size(100%);
+    padding-top: 80px;
+
+    .container__content {
+        @include flexbox(center);
+        @include size(100%);
+        padding: 5px;
+
+        .container__filter {
+            max-width: 250px;
+            @include size(100%);
+            margin: 0 10px;
+            border: 1px solid red;
+        }
+
+        .container__showcase {
+            @include size(95%, 100%);
+            border: 1px solid red;
+        }
+    }
+}

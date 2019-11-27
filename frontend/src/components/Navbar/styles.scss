@@ -1,0 +1,149 @@
+/********* Variaveis Globais ************/
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+
+@mixin flexbox($align, $justify: $align){
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin pseudo($pos: absolute, $content: ''){
+    content: $content;
+    position: $pos;
+}
+
+$wrap: wrap;
+$column: column;
+
+/************************************/
+
+.header {
+    z-index: 1;
+    @include size(100%, 80px);
+    position: fixed;
+    background-color: rgb(37, 37, 37);
+    // border: 1px solid red;
+
+    .header__content {
+        @include flexbox(center, space-between);
+        @include size(100%);
+        padding: 0 60px;
+
+        .header__logo {
+            @include size(150px, 100%);
+            border: 1px solid red;
+        }
+
+        .header__menu {
+            @include flexbox(center);
+            @include size(auto, 100%);
+            list-style: none;
+
+            .menu__link {
+                @include flexbox(center);
+                @include size(auto, 100%);
+                padding: 0 15px;
+
+                &:hover {
+                    border-bottom: 3px solid white;
+                    & > a {
+                        color: darkgray;
+                    }
+                }
+                
+                & > a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+                &.menu__link--dropdown {
+                    position: relative;
+                    
+                    &:hover > .dropdown__category{
+                        visibility: visible;
+                        height: 250px;
+                        transition: height 1s linear;
+                    }
+
+                    .dropdown__category{
+                        @include size(350px, 0);
+                        top: 80px;
+                        padding-top: 17px;
+                        position: absolute;
+                        visibility: hidden;
+                        // transition: height .3s eases-out;
+
+                        & > .category__content {
+                            @include flexbox(unset, center);
+                            @include size(100%);
+                            position: relative;
+                            padding: 5px;
+                            border-radius: 10px;
+                            background-color: darkgray;
+                            border: 1px solid darkgray;
+
+                            &::before {
+                                @include flexbox(unset, center);
+                                @include pseudo;
+                                width: 0;
+                                height: 0;
+                                top: -20px;
+                                border-left: 20px solid transparent;
+                                border-right: 20px solid transparent;
+                                border-bottom: 20px solid darkgray;
+                            }
+
+                            .category__cards {
+                                @include size(150px, 100%);
+                                border: 1px solid blue;
+                                // transition: height 1s linear;
+                            }
+                        }
+                        
+                    }
+                }
+            }   
+        }
+    }
+}
+
+// Dropdown 
+
+    
+// .dropdown__category{
+//     @include size(350px);
+//     top: 80px;
+//     padding-top: 17px;
+//     position: absolute;
+//     pointer-events: none;
+
+//     & > .category__content {
+//         @include flexbox(unset, center);
+//         @include size(100%);
+//         position: relative;
+//         padding: 5px;
+//         background-color: darkgray;
+//         border: 1px solid darkgray;
+
+//         &::before {
+//             @include flexbox(unset, center);
+//             @include pseudo;
+//             width: 0;
+//             height: 0;
+//             top: -20px;
+//             border-left: 20px solid transparent;
+//             border-right: 20px solid transparent;
+//             border-bottom: 20px solid darkgray;
+//         }
+
+//         .category__cards {
+//             @include size(150px);
+//             border: 1px solid blue;
+//         }
+//     }   
+// }
+
+

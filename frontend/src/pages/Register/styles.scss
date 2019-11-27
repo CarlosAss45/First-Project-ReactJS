@@ -1,0 +1,112 @@
+/********* Variaveis Globais ************/
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+
+@mixin flexbox($align, $justify: $align){
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin pseudo($pos: absolute, $content: ''){
+    content: $content;
+    position: $pos;
+}
+
+@mixin input($border, $padding, $radius){
+    outline: none;
+    border: $border;
+    padding: $padding;
+    border-radius: $radius;
+}
+
+@mixin button($border, $radius, $padding, $color, $background) {
+    cursor: pointer;
+    outline: none;
+    border: $border;
+    border-radius: $radius;
+    padding: $padding;
+    color: $color;
+    background-color: $background;
+
+
+}
+
+$wrap: wrap;
+$column: column;
+
+/************************************/
+
+.container__register {
+    @include flexbox(center);
+    @include size(100%);
+    padding-top: 80px;
+    background-color: rgb(167, 39, 167);
+
+    .register__content {
+        @include flexbox(center);
+        flex-direction: $column;
+        max-width: 500px;
+        @include size(100%, auto);
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(49, 49, 49, 0.897);
+
+        & > h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .register__form {
+            @include flexbox(center);
+            flex-direction: $column;
+
+            .form__items {
+                margin: 20px 0;
+                position: relative;
+
+                & > input {
+                    @include input(none, 5px, 5px)
+                }
+    
+                & > label {
+                    left: 5px;
+                    top: 5px;
+                    position: absolute;
+                    color: darkgray;
+                    pointer-events: none;
+                    transition: all .4s ease-in-out;
+                    
+                }
+
+                & > input:focus + label,
+                & > input:not(:placeholder-shown) + label {
+                    top: -17px;
+                    left: 0px;
+                    color: white;
+                    transition: all .4s ease-in-out;
+                } 
+            }
+            .form__button {
+                @include button(none, 5px, 10px 20px, white, rgb(12, 12, 12));
+                &:hover {
+                    background-color: rgb(31, 31, 31);
+                }
+            }
+        }
+
+        .link__login {
+            margin: 5px 0;
+            color: white;
+            font-size: 15px;
+            text-decoration: none;
+            &:hover {
+                color: darkgray;
+                text-decoration: underline;
+            }
+        }
+    }
+}

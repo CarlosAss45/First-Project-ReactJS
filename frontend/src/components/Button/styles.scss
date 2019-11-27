@@ -1,0 +1,19 @@
+// Variaveis Globais
+
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+@mixin button($padding, $color, $background){
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: $padding;
+    color: $color;
+    background-color: $background;
+}
+
+.btn__primary{
+    @include button(5px 20px, white, blue);
+}

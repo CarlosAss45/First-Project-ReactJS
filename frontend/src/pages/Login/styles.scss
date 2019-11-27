@@ -1,0 +1,152 @@
+/********* Variaveis Globais ************/
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+
+@mixin flexbox($align, $justify: $align){
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin pseudo($pos: absolute, $content: ''){
+    content: $content;
+    position: $pos;
+}
+
+@mixin input($border, $padding, $radius){
+    outline: none;
+    border: $border;
+    padding: $padding;
+    border-radius: $radius;
+}
+
+@mixin button($border, $radius, $padding, $color, $background) {
+    cursor: pointer;
+    outline: none;
+    border: $border;
+    border-radius: $radius;
+    padding: $padding;
+    color: $color;
+    background-color: $background;
+
+
+}
+
+$wrap: wrap;
+$column: column;
+
+/************************************/
+
+html, body {
+    overflow:hidden ;
+}
+
+.container__login {
+    @include size(100%);
+    @include flexbox(center);
+    padding-top: 80px;
+    position: relative;
+    background-color: rgb(167, 39, 167);
+
+    .login__content {
+        @include flexbox(center);
+        flex-direction: column;
+        max-width: 500px;
+        @include size(100%, auto);
+        padding: 5px;
+        border-radius: 10px;
+        // border: 1px solid red;
+        background-color: #333;;
+
+        & > h1 {
+            text-align: center;
+            color: white;
+        }
+
+        & > span {
+            font-size: 12px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .login__form {
+            @include flexbox(center);
+            flex-direction: $column;
+            max-width: 500px;
+            @include size(100%, auto);
+            padding: 5px;
+            // border: 1px solid blue;
+
+            .form__items {
+                margin: 15px 0;
+                position: relative;
+
+                & > label {
+                    top: 5px;
+                    left: 5px;
+                    position: absolute;
+                    color: darkgray;
+                    pointer-events: none;
+                    transition: all .4s ease-out;
+                }
+
+                & > input {
+                    @include input(none, 5px, 5px);
+                }
+
+                & > input:focus + label,
+                & > input:not(:placeholder-shown) + label {
+                    left: 0;
+                    top: -17px;
+                    color: white;
+                }
+            }
+
+            .form__button {
+                @include button(none, 7px, 7px 40px, white, black);
+
+                &:hover {
+                    background-color: rgb(15, 15, 15);
+                }
+            }
+        }
+
+        .link__register {
+            margin: 5px 0;
+            color: white;
+            font-size: 15px;
+            text-decoration: none;
+            &:hover {
+                color: darkgray;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// Animações
+
+.squares li {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: -40px;
+    background-color: rgba(255, 255, 255, 0.15);
+    animation: up 2s infinite alternate;
+  }
+  
+@keyframes up {
+    from {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-800px) rotate(960deg);
+    }
+}
